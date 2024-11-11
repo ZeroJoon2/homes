@@ -17,9 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path
-from config.views import index
+from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", index),
+    path("", views.index),
+    path("signup/", views.signup),
+    path("send-verification-code/", views.send_verification_code, name="send_verification_code"),
+    path("verify-code/", views.verify_code, name="verify_code"),
+    path("complete-registration/", views.complete_registration, name="complete_registration"),
 ]

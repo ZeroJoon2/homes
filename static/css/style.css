@@ -1,4 +1,511 @@
-.body{
-    font-size: 1000px;
+/****************************************/
+/*************공통************************/
+/****************************************/
+@font-face {
+    font-family: 'Noto Sans KR';
+    src: url('/static/fonts/NotoSansKR-Regular.ttf') format('truetype'),
+         url('/static/fonts/NotoSansKR-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
 
+@font-face {
+    font-family: 'Noto Sans KR';
+    src: url('/static/fonts/NotoSansKR-Black.ttf') format('truetype'),
+         url('/static/fonts/NotoSansKR-Black.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+/* 기본 스타일 */
+html {
+    cursor: none;
+    background: black;
+    overflow-x: hidden;
+}
+
+
+
+/* 잔상 효과를 위한 이미지 스타일 */
+.cursor-trail {
+    width: 50px; /* 이미지 크기 */
+    height: 50px;
+    border-radius: 100%;
+    border-color: black solid 3px;
+    position: absolute;
+    pointer-events: none;
+    transition: transform 0.15s ease; /* 부드러운 이동 */
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    opacity: 0.7; /* 잔상 효과를 위한 약간의 투명도 */
+
+}
+
+/* 클릭 시 pulse 애니메이션 */
+.cursor-trail.pulse {
+    animation: pulse 0.3s ease-out infinite; /* pulse 애니메이션 적용 */
+}
+
+/* pulse 애니메이션 */
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2); /* 확대 */
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+/* 각 잔상 이미지의 투명도 조정 */
+#cursorTrail1 {
+    opacity: 1;
+}
+#cursorTrail2 {
+    opacity: 0.5;
+}
+
+/* 기본 스크롤바 디자인 설정 */
+body {
+    scrollbar-width: thin; /* Firefox에서 얇은 스크롤바 */
+    scrollbar-color: rgb(0, 0, 0) transparent; /* Firefox: 스크롤바와 트랙 색상 */
+}
+
+/* Webkit 기반 브라우저 (Chrome, Safari)용 스크롤바 디자인 */
+body::-webkit-scrollbar {
+    width: 8px; /* 세로 스크롤바 너비 */
+}
+
+/* 스크롤 트랙 스타일 */
+body::-webkit-scrollbar-track {
+    background: transparent; /* 투명한 트랙 */
+    margin: 4px 0; /* 트랙 위아래 여백 추가 */
+}
+
+/* 스크롤바 핸들 디자인 */
+body::-webkit-scrollbar-thumb {
+    background: rgb(0, 0, 0); /* 스크롤바 색상 */
+    border-radius: 10px; /* 둥근 모서리 */
+    transition: background 0.3s ease; /* 배경 전환 효과 */
+}
+
+/* 스크롤바 핸들 호버 시 스타일 */
+body::-webkit-scrollbar-thumb:hover {
+    background: rgb(0, 0, 0); /* 호버 시 색상 진하게 */
+}
+
+/* 스크롤바의 상하 버튼 숨기기 */
+body::-webkit-scrollbar-button {
+    display: none; /* 버튼 숨기기 */
+}
+
+
+/* 클릭 가능한 요소 위에서 커서 숨기기 */
+a:hover, button:hover, .clickable:hover {
+    cursor: none;
+}
+
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+    header .logo h1 {
+        font-size: 1.5em;
+    }
+
+    .hero-content h2 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .menu ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu ul li {
+        margin: 10px 0;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .cta-btn {
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+}
+
+
+
+
+/****************************************/
+/*************공통************************/
+/****************************************/
+body, html {
+    font-family: 'Noto Sans KR', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    height: 100%;
+
+}
+
+
+/* 헤더 */
+header {
+    background-color: rgb(22, 0, 75);
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height : 10%;
+    z-index: 999;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(100% - 100px);  /* 좌우 여백 포함한 너비 설정 */
+    margin: auto;
+    padding: 0 /* 좌우 패딩을 줄여 간격을 좁힘 */
+}
+/* 로고 */
+.logo {
+    margin-top : 10px;
+    margin-right: 10px; /* 로고와 메뉴 사이 간격 줄이기 */
+}
+
+#logopng{
+    width : 200px;
+    
+}
+
+
+/* 오버레이 및 히어로 콘텐츠 */
+.overlay {
+    position: relative;
+    height: 100%;
+    background: url('../img/background.webp') no-repeat center center/cover; /* 배경 이미지 */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Positions hero-content at the bottom */
+    align-items: center;       /* Centers hero-content horizontally */
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Example background */
+    position: relative;
+}
+
+.overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* 오버레이 효과 */
+    z-index: 1;
+}
+
+#scrolldown{
+    position: absolute;
+    bottom: 0px;               /* Position near the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 70px;                /* Adjust size as needed */
+    opacity: 1;               /* Slight transparency */
+    z-index: 999;
+    animation: pulse 1.5s infinite; /* Apply the pulse animation */
+}
+
+#scrolltop{
+    position: absolute;
+    bottom: -700px;               /* Position near the bottom */
+    left: 50%;
+    transform: translateX(-50%); /* Center horizontally */
+    width: 70px;                /* Adjust size as needed */
+    opacity: 1;               /* Slight transparency */
+    z-index: 999;
+    animation: pulse 1.5s infinite; /* Apply the pulse animation */
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    height: 100%;
+    padding-top: 20vh; /* 상단에서 여백 추가 */
+    transform: translateY(-20%); /* 중앙보다 약간 위로 이동 */
+}
+
+.hero-content h2 {
+    font-size: 5em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.hero-content p {
+    font-size: 2.5em;
+    margin: 10px 0 20px;
+    line-height: 1.5;
+}
+
+.cta-btn {
+    width: 200px;
+    height :60px;
+    background-color: #ffa1e3;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.5em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.cta-btn:hover {
+    background-color: #0078d7;
+    color : white
+}
+
+/* Signup*/
+.signup-container {
+    background-color: rgb(22, 0, 75);
+    width: 100%;
+    height:450PX;
+    max-width: 700px;
+    margin: auto;
+    padding: 20px;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    z-index: 2;
+    color : white;
+}
+
+.signup-container h2 {
+    margin-bottom: 1rem;
+}
+
+.signup-container label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    text-align: left;
+}
+
+.signup-container input[type="email"],
+.signup-container input[type="text"]
+{
+    width: 70%;
+    height:40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    background : rgb(212, 212, 212);
+    color : black
+}
+
+/* Container for input-button pairs */
+.input-button-group {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 3.5rem;
+
+}
+
+#nickname{
+    width: 100%
+}
+
+/* Adjust input width to fit with button */
+
+/* Inline button styling */
+.cta-btn-inline {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ffa1e3;
+    color: black;
+    cursor: pointer;
+    transition: background 0.3s;
+    width : 30%;
+    height:55px;
+    font-size: 1.3em;
+}
+
+.cta-btn-inline:hover {
+    background-color: #0078d7;
+    color: white;
+}
+
+.below{
+    display: flex;
+    color : white;
+
+}
+
+.statistics {
+    width: 30%;
+    margin: 20px;
+    margin-left:200px;
+    padding: 20px;
+    background-color: #000000;
+    border: 2px solid #ccc;    
+
+}
+
+.statistics h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-top : 5px;
+    margin-bottom: 20px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.stat-item .label {
+    flex: 1;
+    font-size: 1em;
+
+}
+
+.stat-item .bar {
+    height: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: width 0.5s ease;
+}
+
+.stat-item .percentage {
+    font-size: 0.9em;
+    min-width: 50px;
+    text-align: right;
+}
+
+/* Emphasis styling for "중개 수수료가 비싸다" */
+.stat-item.emphasized .label {
+    font-weight: bold;
+    color: #0078d7;
+    font-size: 1.2em;
+}
+
+.stat-item.emphasized .bar {
+    background-color: #005bb5;  /* Darker shade for emphasis */
+    height: 12px;               /* Slightly taller bar for emphasis */
+}
+.source {
+    text-align: right; /* Right-aligns the source text */
+    font-size: 15px;
+
+}
+.pie-chart-container {
+    width: 30%;
+    margin: 20px;
+    margin-left:200px;
+    padding: 20px;
+    background-color: #000000;
+    border: 2px solid #ccc;    
+    text-align: center;
+}
+
+.pie-chart-container h2 {
+    font-size: 1.5em;
+    margin-top : 5px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Flex container for pie chart and legend */
+.chart-legend-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px; /* Space between legend and pie chart */
+}
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left-aligns legend items */
+    gap: 20px;
+    text-align: left;        /* Left-aligns text inside each legend item */
+    color: white;
+}
+
+.pie-chart {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ff0000 0% 73.5%,     /* Red for "과도한 수준이다" */
+        #ff6464 73.5% 98.3%,  /* Light red for "합리적인 수준이다" */
+        #ffc4c4 98.3% 100%    /* Light pink for "저렴한 수준이다" */
+    );
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+}
+
+.color-block {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 3px;
+}
+
+.label {
+    font-size: 1em;
+    color: white;
+}
+
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Ensure it overlays other content */
+}
+
+.loading-message {
+    color: white;
+    font-size: 1.5em;
+}
+
+
+/* 푸터 */
+footer {
+    background-color: rgb(22, 0, 75);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.9em;
 }

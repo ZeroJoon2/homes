@@ -1,13 +1,215 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel = 'stylesheet' href="{% static 'css/stylesheet' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>HOMES</title>
+    <meta name="description" content="집을 구하자">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    test
+    <div id = 'top'></div>
+    <!-- 잔상 효과를 위한 여러 개의 이미지 -->
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail1">
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
+    
+    
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href = '/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay">
+        <div class="hero-content">
+            <h2>무서운 세상</h2>
+            <p>믿고 찾는 서울살이 플랫폼</p>
+            <button onclick="window.location.href='/signup'" class="cta-btn">살아남자!</button>
+        </div>
+        <a href = '#below'><img src = "{% static 'img/scrolldown.png' %}" id = 'scrolldown'></a>
+    </div>
+    <div class = 'below' id = 'below'>
+        <div class="statistics">           
+            <h2>공인중개사무소 만족도!</h2>
+            <!-- Emphasized item for "중개 수수료가 비싸다" -->
+            <div class="stat-item">
+                <span class="label">중개 <strong style="color: red;">수수료가 비싸다</strong></span>
+                <div class="bar" style="width: 38.3%; background-color: #ff0000;"></div>
+                <span class="percentage">38.3%</span>
+            </div>
+            
+            <div class="stat-item">
+                <span class="label">매물에 대한 <strong style="color: #ff2e2e;">정보 제공 부족</strong></span>
+                <div class="bar" style="width: 18.5%; background-color: #ff2e2e;"></div>
+                <span class="percentage">18.5%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label"><strong style="color: #ff5757;">허위 매물</strong>에 따른 헛걸음</span>
+                <div class="bar" style="width: 15.5%; background-color: #ff5757;"></div>
+                <span class="percentage">15.5%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">중개사무소 간 매물 공유</span>
+                <div class="bar" style="width: 10.5%; background-color: #ff8d8d;"></div>
+                <span class="percentage">10.5%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">공인중개사무소 또는 공인중개사의 <strong style="color: #ffd3d3;">불친절</strong></span>
+                <div class="bar" style="width: 8.5%; background-color: #ffd3d3;"></div>
+                <span class="percentage">8.5%</span>
+            </div>
+            <p class="source">통계 출처 : 지디넷코리아(2021, 표본수 1천명)</p>
+        </div>
+
+
+        <div class="pie-chart-container">
+            <h2>현행 최대 수수료율에 대한 생각</h2>
+            <div class="chart-legend-container">
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="color-block" style="background-color: #ff0000;"></span>
+                        <span class="label">과도(73.5%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-block" style="background-color: #ff6464;"></span>
+                        <span class="label">합리적(24.8%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-block" style="background-color: #ffc4c4;"></span>
+                        <span class="label">저렴(1.7%)</span>
+                    </div>
+                </div>
+                <div class="pie-chart"></div>
+            </div>
+            <p class="source">통계 출처 : 지디넷코리아(2021, 표본수 1천명)</p>
+        </div>
+        
+    </div>
+    
+    <div class = 'below' id = 'below'>
+        <div class="statistics">           
+            <h2>공인중개사무소 만족도!</h2>
+            <!-- Emphasized item for "중개 수수료가 비싸다" -->
+            <div class="stat-item">
+                <span class="label">중개 <strong style="color: red;">수수료가 비싸다</strong></span>
+                <div class="bar" style="width: 38.3%; background-color: #ff0000;"></div>
+                <span class="percentage">38.3%</span>
+            </div>
+            
+            <div class="stat-item">
+                <span class="label">매물에 대한 <strong style="color: #ff2e2e;">정보 제공 부족</strong></span>
+                <div class="bar" style="width: 18.5%; background-color: #ff2e2e;"></div>
+                <span class="percentage">18.5%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label"><strong style="color: #ff5757;">허위 매물</strong>에 따른 헛걸음</span>
+                <div class="bar" style="width: 15.5%; background-color: #ff5757;"></div>
+                <span class="percentage">15.5%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">중개사무소 간 매물 공유</span>
+                <div class="bar" style="width: 10.5%; background-color: #ff8d8d;"></div>
+                <span class="percentage">10.5%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">공인중개사무소 또는 공인중개사의 <strong style="color: #ffd3d3;">불친절</strong></span>
+                <div class="bar" style="width: 8.5%; background-color: #ffd3d3;"></div>
+                <span class="percentage">8.5%</span>
+            </div>
+            <p class="source">통계 출처 : 지디넷코리아(2021, 표본수 1천명)</p>
+        </div>
+
+
+        <div class="pie-chart-container">
+            <h2>현행 최대 수수료율에 대한 생각</h2>
+            <div class="chart-legend-container">
+                <div class="legend">
+                    <div class="legend-item">
+                        <span class="color-block" style="background-color: #ff0000;"></span>
+                        <span class="label">과도(73.5%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-block" style="background-color: #ff6464;"></span>
+                        <span class="label">합리적(24.8%)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="color-block" style="background-color: #ffc4c4;"></span>
+                        <span class="label">저렴(1.7%)</span>
+                    </div>
+                </div>
+                <div class="pie-chart"></div>
+            </div>
+            <p class="source">통계 출처 : 지디넷코리아(2021, 표본수 1천명)</p>
+        </div>
+        
+    </div>    
+    <a href = '#top'><img src = "{% static 'img/scrolltop.png' %}" id = 'scrolltop'></a>
+    <footer>
+        <p>&copy; 2024 송수민 / 최영준</p>
+    </footer>
+
+    
 </body>
+
+<script>
+/****************************************/
+/*************공통************************/
+/****************************************/
+    // 잔상 효과를 위한 이미지 요소 배열
+    const trails = [
+        document.getElementById("cursorTrail1"),
+        document.getElementById("cursorTrail2"),
+
+    ];
+
+    // 마우스 이동 이벤트 리스너 추가
+    document.addEventListener("mousemove", (event) => {
+        const mouseX = event.pageX;
+        const mouseY = event.pageY;
+
+        // 각 잔상 이미지가 약간 늦게 마우스를 따라오게 설정
+        trails.forEach((trail, index) => {
+            setTimeout(() => {
+                trail.style.left = `${mouseX}px`;
+                trail.style.top = `${mouseY}px`;
+            }, index * 50); // 각 잔상이 약간씩 딜레이되도록 설정
+        });
+    });
+
+
+
+
+    // 클릭 시 pulse 애니메이션 적용
+    document.addEventListener("mousedown", () => {
+        trails.forEach(trail => {
+            trail.classList.add("pulse");
+        });
+    });
+
+    document.addEventListener("mouseup", () => {
+        trails.forEach(trail => {
+            trail.classList.remove("pulse");
+        });
+    });
+
+    // 클릭 가능한 요소 위에 있을 때 pulse 효과 추가
+    document.querySelectorAll("a, button, .clickable").forEach(element => {
+        element.addEventListener("mouseover", () => {
+            trails.forEach(trail => trail.classList.add("pulse"));
+        });
+        element.addEventListener("mouseout", () => {
+            trails.forEach(trail => trail.classList.remove("pulse"));
+        });
+    });
+/****************************************/
+/*************공통************************/
+/****************************************/
+
+</script>
+
 </html>
