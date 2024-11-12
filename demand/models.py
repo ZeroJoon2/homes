@@ -45,6 +45,7 @@ seoul_area = [
 
 class tbDemands(models.Model):
     email = models.ForeignKey(tbUsers, on_delete=models.CASCADE, db_column='email')
+    post_title = models.CharField(max_length=100, default = '제목을 입력해주세요')
     house_type_code = models.IntegerField(choices=house_type)
     house_type_name = models.CharField(max_length=100, editable= False)
     house_transaction_code = models.IntegerField(choices=house_transaction_type, default= 1)
@@ -53,7 +54,7 @@ class tbDemands(models.Model):
     house_location_name = models.CharField(max_length=100, editable =False)
     house_min_price = models.IntegerField()
     house_max_price = models.IntegerField()
-
+    
     def save(self, *args, **kwargs):
         # 코드에 따른 이름 자동 설정
         for code, name in house_type:
@@ -73,7 +74,7 @@ class tbDemands(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.email}'
+        return self.email.email
 
     class Meta:
         verbose_name = "Demand"          # 단수형 이름

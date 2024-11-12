@@ -1,0 +1,210 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+        <!-- 잔상 효과를 위한 여러 개의 이미지 -->
+        <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail1">
+        <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
+        
+        
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href = '/users/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+            </div>
+
+        </div>
+    </header>
+
+    <main class = 'overlay'>
+        <div class="signup-container">
+            <h2>입력하세요!</h2>
+
+                <form method="post" id="signup-form">
+                {% csrf_token %}
+                    <label for="post_title">제목</label>
+                    <div class="input-button-group">
+                        <input type="text" id="post_title" name="post_title" required placeholder="제목이 뭔가요">
+                    </div>
+                    <div class="input-button-group">
+                        <div class = 'inputLabel'>
+                            <label for="house_type_code">유형선택</label>
+                            <div class="custom-select-wrapper">
+                                <select class = 'select_dropdown' id = 'house_type_code' name = 'house_type_code' required>
+                                    <option value = '' disabled selected> 선택하시라구요</option>
+                                    <option value = '1'>월세</option>
+                                    <option value = '2'>전세</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = 'inputLabel'>
+                            <label for="house_transaction_code">거주형태선택</label>
+                            <div class="custom-select-wrapper">
+                                <select class = 'select_dropdown' id = 'house_transaction_code' name = 'house_transaction_code' required>
+                                    <option value = '' disabled selected> 선택하시라구요</option>
+                                    <option value = '1'> 아파트</option>
+                                    <option value = '2'> 빌라</option>
+                                    <option value = '3'> 단독주택</option>
+                                    <option value = '4'> 다가구주택</option>
+                                    <option value = '5'> 오피스텔</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = 'inputLabel'>
+                            <label for="house_location_code">위치는요</label>
+                            <div class="custom-select-wrapper">
+                                <select class = 'select_dropdown' id = 'house_location_code' name = 'house_location_code' required>
+                                    <option value = '' disabled selected> 선택하시라구요</option>
+                                    <option value = '1'> 강남구</option>
+                                    <option value = '2'> 강동구</option>
+                                    <option value = '3'> 강북구</option>
+                                    <option value = '4'> 강서구</option>
+                                    <option value = '5'> 관악구</option>
+                                    <option value = '6'> 광진구</option>
+                                    <option value = '7'> 구로구</option>
+                                    <option value = '8'> 금천구</option>
+                                    <option value = '9'> 노원구</option>
+                                    <option value = '10'> 도봉구</option>
+                                    <option value = '11'> 동대문구</option>
+                                    <option value = '12'> 동작구</option>
+                                    <option value = '13'> 마포구</option>
+                                    <option value = '14'> 서대문구</option>
+                                    <option value = '15'> 서초구</option>
+                                    <option value = '16'> 성동구</option>
+                                    <option value = '17'> 성북구</option>
+                                    <option value = '18'> 송파구</option>
+                                    <option value = '19'> 양천구</option>
+                                    <option value = '20'> 영등포구</option>
+                                    <option value = '21'> 용산구</option>
+                                    <option value = '22'> 은평구</option>
+                                    <option value = '23'> 종로구</option>
+                                    <option value = '24'> 중구</option>
+                                    <option value = '25'> 중랑구</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="email">예산을 설정하세요</label>
+                    <div class="input-button-group">
+                        <input type="number" id="house_min_price" name="house_min_price" required placeholder="최저금액은 얼마인가요">
+                        ~
+                        <input type="number" id="house_max_price" name="house_max_price" required placeholder="최저금액은 얼마인가요">
+                    </div>
+                    <button type="submit" class = 'cta-btn'>등록!!!!!</button>
+                </form>
+                
+        </div>
+        
+    </main>
+    <div id="loading-overlay">
+        <div class="loading-message">로딩중...</div>
+    </div>
+</body>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("verification-section").classList.add("visible");
+        });
+
+function showVerificationInput() {
+    // Show the verification code input after clicking "인증번호 발송"
+    document.getElementById("verification-section").style.display = "block";
+    alert("인증번호가 발송되었습니다."); // Placeholder action for sending verification code
+}
+
+function validateForm() {
+    // Ensure nickname is filled before submitting
+    const nickname = document.getElementById("nickname").value;
+    if (nickname === "") {
+        alert("닉네임을 입력해주세요!");
+        return false;
+    }
+    document.getElementById("submit-section").style.display = "block";
+    return true;
+}
+
+/****************************************/
+/*************공통************************/
+/****************************************/
+    // 잔상 효과를 위한 이미지 요소 배열
+    const trails = [
+        document.getElementById("cursorTrail1"),
+        document.getElementById("cursorTrail2"),
+
+    ];
+
+    // 마우스 이동 이벤트 리스너 추가
+    document.addEventListener("mousemove", (event) => {
+        const mouseX = event.pageX;
+        const mouseY = event.pageY;
+
+        // 각 잔상 이미지가 약간 늦게 마우스를 따라오게 설정
+        trails.forEach((trail, index) => {
+            setTimeout(() => {
+                trail.style.left = `${mouseX}px`;
+                trail.style.top = `${mouseY}px`;
+            }, index * 50); // 각 잔상이 약간씩 딜레이되도록 설정
+        });
+    });
+
+
+
+
+    // 클릭 시 pulse 애니메이션 적용
+    document.addEventListener("mousedown", () => {
+        trails.forEach(trail => {
+            trail.classList.add("pulse");
+        });
+    });
+
+    document.addEventListener("mouseup", () => {
+        trails.forEach(trail => {
+            trail.classList.remove("pulse");
+        });
+    });
+
+    // 클릭 가능한 요소 위에 있을 때 pulse 효과 추가
+    document.querySelectorAll("a, button, .clickable").forEach(element => {
+        element.addEventListener("mouseover", () => {
+            trails.forEach(trail => trail.classList.add("pulse"));
+        });
+        element.addEventListener("mouseout", () => {
+            trails.forEach(trail => trail.classList.remove("pulse"));
+        });
+    });
+/****************************************/
+/*************공통************************/
+/****************************************/
+// Function to show the loading overlay
+function showLoadingOverlay() {
+    document.getElementById("loading-overlay").style.display = "flex";
+}
+
+// Add event listeners to forms to show the loading overlay on submit
+document.addEventListener("DOMContentLoaded", function () {
+    const signupForm = document.querySelector("#signup-form"); // Adjust the ID based on your form
+    const verifyForm = document.querySelector("#verify-form"); // Adjust the ID based on your form
+
+    if (signupForm) {
+        signupForm.addEventListener("submit", function () {
+            showLoadingOverlay();
+        });
+    }
+
+    if (verifyForm) {
+        verifyForm.addEventListener("submit", function () {
+            showLoadingOverlay();
+        });
+    }
+});
+
+</script>
+
+</html>

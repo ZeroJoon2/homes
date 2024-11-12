@@ -15,7 +15,7 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href = '/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                <a href = '/users/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
             </div>
             <div class = 'header_nickname'>
                 {{user.nickname}}님 반갑습니다.
@@ -26,12 +26,12 @@
     <div class="overlay">
         <div class="hero-content">
             <div class = 'two-circle'>
-                <a href = '/users/select/demand/'>
+                <a href = '/users/demand/'>
                     <div class = circle1>
                         집사기
                     </div>
                 </a>
-                <a href = '/users/select/supply/'>
+                <a href = '/users/supply/'>
                     <div class = circle2>
                         집팔기
                     </div>

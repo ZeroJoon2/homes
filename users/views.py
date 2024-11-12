@@ -25,24 +25,28 @@ def register_user(request):
 
 
 def login_check(request):
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        user = tbUsers.objects.get(email = email)
-        try : 
-            if password == user.password:
-                print("hello")
-                request.session['user_email'] = user.email  # user의 id를 세션에 저장
-                return render(request, 'select.html', {'user': user})
+    if request.session['user_email'] is not None:
+        if request.method == 'POST':
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = tbUsers.objects.get(email = email)
+            try : 
+                if password == user.password:
+                    print("hello")
+                    request.session['user_email'] = user.email  # user의 id를 세션에 저장
+                    return render(request, 'select.html', {'user': user})
+                
+                else:
+                    print("bye")
+                    return render(request, 'login.html')
+            except Exception as e:
+                print('except', e)
+                return render(request, 'index.html')
             
-            else:
-                print("bye")
-                return render(request, 'login.html')
-        except Exception as e:
-            print('except', e)
-            return render(request, 'index.html')
-        
-    return render(request,'login.html')
+        return render(request,'login.html')
+    else:
+        print('로그인 되있네요 ~')
+        return render(request, 'select.html')
    
             
 

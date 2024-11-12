@@ -4,5 +4,5 @@ from demand.models import tbDemands
 
 @admin.register(tbDemands)
 class tbDemandAdmin(admin.ModelAdmin):
-    list_display = ['id', 'email']
+    list_display = ['id', 'post_title','email']
     pass
