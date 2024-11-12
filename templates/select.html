@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- 잔상 효과를 위한 여러 개의 이미지 -->
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail1">
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
+
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href = '/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+            </div>
+            <div class = 'header_nickname'>
+                {{user.nickname}}님 반갑습니다.
+            </div>
+        </div>
+    </header>
+
+    <div class="overlay">
+        <div class="hero-content">
+            <div class = 'two-circle'>
+                <a href = '/users/select/demand/'>
+                    <div class = circle1>
+                        집사기
+                    </div>
+                </a>
+                <a href = '/users/select/supply/'>
+                    <div class = circle2>
+                        집팔기
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+
+<script>
+    /****************************************/
+    /*************공통************************/
+    /****************************************/
+        // 잔상 효과를 위한 이미지 요소 배열
+        const trails = [
+            document.getElementById("cursorTrail1"),
+            document.getElementById("cursorTrail2"),
+    
+        ];
+    
+        // 마우스 이동 이벤트 리스너 추가
+        document.addEventListener("mousemove", (event) => {
+            const mouseX = event.pageX;
+            const mouseY = event.pageY;
+    
+            // 각 잔상 이미지가 약간 늦게 마우스를 따라오게 설정
+            trails.forEach((trail, index) => {
+                setTimeout(() => {
+                    trail.style.left = `${mouseX}px`;
+                    trail.style.top = `${mouseY}px`;
+                }, index * 50); // 각 잔상이 약간씩 딜레이되도록 설정
+            });
+        });
+    
+    
+    
+    
+        // 클릭 시 pulse 애니메이션 적용
+        document.addEventListener("mousedown", () => {
+            trails.forEach(trail => {
+                trail.classList.add("pulse");
+            });
+        });
+    
+        document.addEventListener("mouseup", () => {
+            trails.forEach(trail => {
+                trail.classList.remove("pulse");
+            });
+        });
+    
+        // 클릭 가능한 요소 위에 있을 때 pulse 효과 추가
+        document.querySelectorAll("a, button, .clickable").forEach(element => {
+            element.addEventListener("mouseover", () => {
+                trails.forEach(trail => trail.classList.add("pulse"));
+            });
+            element.addEventListener("mouseout", () => {
+                trails.forEach(trail => trail.classList.remove("pulse"));
+            });
+        });
+    /****************************************/
+    /*************공통************************/
+    /****************************************/
+    
+    </script>
+    
+</html>

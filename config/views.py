@@ -7,6 +7,9 @@ from django.conf import settings
 def index(request):
     return render(request, 'index.html')
 
+def login(request):
+    return render(request, 'login.html')
+
 def signup(request):
     return render(request, 'signup.html')
 
@@ -22,8 +25,8 @@ def send_verification_code(request):
 
         # 이메일 전송
         send_mail(
-            "Your Verification Code",
-            f"Your verification code is {verification_code}",
+            "반갑습니다",
+            f"인증코드입니다. 빨리가서 하세요 {verification_code}",
             settings.EMAIL_HOST_USER,
             [email],
             fail_silently=False,
@@ -41,6 +44,7 @@ def verify_code(request):
 
         if entered_code == stored_code:
             # Verification successful
+            request.session['email'] = email
             return render(request, "signup.html", {"verification_successful": True, "email": email})
         else:
             # Verification failed
@@ -48,8 +52,6 @@ def verify_code(request):
 
     return JsonResponse({"error": "Invalid request method."}, status=400)
 
-def complete_registration(request):
-    if request.method =='POST':
-        print('hi')
-        return render(request, 'next.html')
+def register_user(request):
+
     return render(request, 'next.html')

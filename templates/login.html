@@ -24,67 +24,15 @@
 
     <main class = 'overlay'>
         <div class="signup-container">
-            <h2>계정을 만들어서 살아남으세요!</h2>
-
-                <form method="post" action="{% url 'send_verification_code' %}" id="signup-form">
+            <h2>로그인해서 살아남으세요!</h2>
+                <form method = "post" id = 'signup-form' action="{% url 'login_check' %}">
                     {% csrf_token %}
-                    <input type="hidden" name="send_code" value="true">
-                    <!-- Email input with button beside it -->
                     <label for="email">이메일</label>
-                    <div class="input-button-group">
-                        <input type="email" id="email" name="email" required placeholder="이메일을 입력해주세요"  value="{{ email }}">
-                        <button type="submit" class="cta-btn-inline">인증번호 발송</button>
-                    </div>
+                        <input type="email" id="email" name="email" required placeholder="이메일을 입력해주세요" >
+                    <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password" required placeholder="비밀번호를 입력해주세요" >
+                    <button type = 'submit' class = 'cta-btn'>로그인!</button>
                 </form>
-                <!-- Verification form, shown only if verification is not successful -->
-                {% if not verification_successful %}
-                <form method="post" action="{% url 'verify_code' %}" id="verify-form">
-                    {% csrf_token %}
-                    <!-- Verification code input with button beside it -->
-                    <div id="verification-section">
-                        <label for="verification-code">인증번호</label>
-                        <div class="input-button-group">
-                            <input type="text" id="verification-code" name="verification_code" required placeholder="인증번호를 입력해주세요.">
-                            <button type="submit" class="cta-btn-inline">인증</button>
-                        </div>
-                    </div>
-                </form>
-                {% endif %}
-
-                <!-- Success message and nickname input form, shown only when verification is successful -->
-                {% if verification_successful %}
-                <p style="color: green;">인증되었습니다! 닉네임을 입력해주세요.</p>
-
-                {% if error_message %}
-                    <script>
-                        alert("{{ error_message }}");
-                    </script>
-                {% endif %}
-                <form method="post" action="{% url 'login' %}">
-                    {% csrf_token %}
-                    <div class="password-section">
-                        <div class = "password-detail">
-                            <label for="password-code" class = "inputLabel">비밀번호</label>
-                            <div class="input-button-group">
-                                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력해주세요.">
-                            </div>
-                        </div>
-                        <div class = "password-detail">
-                            <label for="password-code"  class = "inputLabel">비밀번호 확인</label>
-                            <div class="input-button-group">
-                                <input type="password" id="password" name="password_check" required placeholder="똑같이 한번 더 입력하세요.">
-                            </div>
-                        </div>
-                    </div>
-                    <label for="nickname" class = "inputLabel">닉네임</label>
-                    <div class="input-button-group">
-                        <input type="text" id="nickname" name="nickname" required placeholder="사용하실 닉네임을 입력해주세요!">
-                    </div>
-                    <button type = 'submit' class = 'cta-btn'>회원가입!</button>
-                </form>
-                {% elif verification_failed %}
-                <p style="color: red;">인증번호가 틀렸습니다. 다시 시도해주세요.</p>
-                {% endif %}
         </div>
         
     </main>
