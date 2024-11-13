@@ -1,21 +1,7 @@
 /****************************************/
 /*************공통************************/
 /****************************************/
-@font-face {
-    font-family: 'Noto Sans KR';
-    src: url('/static/fonts/NotoSansKR-Regular.ttf') format('truetype'),
-         url('/static/fonts/NotoSansKR-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'Noto Sans KR';
-    src: url('/static/fonts/NotoSansKR-Black.ttf') format('truetype'),
-         url('/static/fonts/NotoSansKR-Black.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
 /* 기본 스타일 */
 html {
     cursor: none;
@@ -369,6 +355,7 @@ header .container {
     display: flex;
     gap : 100px
 }
+
 
 
 .imagePreview{
@@ -752,7 +739,10 @@ header .container {
     background-color: #0078d7;
     color : white
 }
-
+.divide{
+    display: flex;
+    gap : 10px
+}
 /* 테이블을 감싸는 컨테이너 */
 .table-container {
     max-width: 800px;
