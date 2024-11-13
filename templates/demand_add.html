@@ -13,20 +13,21 @@
         <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
         
         
-    <header>
-        <div class="container">
-            <div class="logo">
-                <a href = '/users/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <a href = '/users/demand/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                </div>
+                <div class = 'header_nickname'>
+                    {{user.nickname}}님 반갑습니다.
+                </div>
             </div>
-
-        </div>
-    </header>
-
+        </header>
     <main class = 'overlay'>
-        <div class="signup-container">
+        <div class="demand_post-container">
             <h2>입력하세요!</h2>
-
-                <form method="post" id="signup-form">
+            <div class="demand_post-container_divide">
+                <form method="post" class="demand_post-form" enctype="multipart/form-data">
                 {% csrf_token %}
                     <label for="post_title">제목</label>
                     <div class="input-button-group">
@@ -96,11 +97,26 @@
                         ~
                         <input type="number" id="house_max_price" name="house_max_price" required placeholder="최저금액은 얼마인가요">
                     </div>
-                    <button type="submit" class = 'cta-btn'>등록!!!!!</button>
-                </form>
+
+
+            <div class="imagePreviewContainer">
+                <div class = 'imagePreviewContainer_divide'>
+                    <input type="file" id="image1" name="image1" required onchange="previewImage(event, 'imagePreview1')" style="display: none;">
+                    <label for="image1" class="custom-file-upload">이미지 1 선택</label>
+                    <img id="imagePreview1" class = 'imagePreview'/>
+
+                    <input type="file" id="image2" name="image2" onchange="previewImage(event, 'imagePreview2')" style="display: none;">
+                    <label for="image2" class="custom-file-upload">이미지 2 선택</label>
+                    <img id="imagePreview2" class = 'imagePreview'/>
                 
-        </div>
-        
+                    <input type="file" id="image3" name="image3" onchange="previewImage(event, 'imagePreview3')" style="display: none;">
+                    <label for="image3" class="custom-file-upload">이미지 3 선택</label>
+                    <img id="imagePreview3" class = 'imagePreview'/>
+                </div>
+            </div>
+            <button type="submit" class = 'cta-btn'>등록!!!!!</button>
+            </form>
+        </div>        
     </main>
     <div id="loading-overlay">
         <div class="loading-message">로딩중...</div>
@@ -112,23 +128,6 @@
 document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("verification-section").classList.add("visible");
         });
-
-function showVerificationInput() {
-    // Show the verification code input after clicking "인증번호 발송"
-    document.getElementById("verification-section").style.display = "block";
-    alert("인증번호가 발송되었습니다."); // Placeholder action for sending verification code
-}
-
-function validateForm() {
-    // Ensure nickname is filled before submitting
-    const nickname = document.getElementById("nickname").value;
-    if (nickname === "") {
-        alert("닉네임을 입력해주세요!");
-        return false;
-    }
-    document.getElementById("submit-section").style.display = "block";
-    return true;
-}
 
 /****************************************/
 /*************공통************************/
@@ -204,6 +203,22 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+function previewImage(event, previewId) {
+    const imagePreview = document.getElementById(previewId);
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // 미리보기 이미지 표시
+        }
+        reader.readAsDataURL(file); // 파일을 Data URL로 읽기
+    } else {
+        imagePreview.style.display = 'none'; // 파일이 없으면 미리보기 숨기기
+    }
+}
+
 
 </script>
 

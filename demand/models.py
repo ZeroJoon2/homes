@@ -54,6 +54,9 @@ class tbDemands(models.Model):
     house_location_name = models.CharField(max_length=100, editable =False)
     house_min_price = models.IntegerField()
     house_max_price = models.IntegerField()
+    image1 = models.ImageField(upload_to='images/', null=True, blank=True)
+    image2 = models.ImageField(upload_to='images/', null=True, blank=True)
+    image3 = models.ImageField(upload_to='images/', null=True, blank=True)
     
     def save(self, *args, **kwargs):
         # 코드에 따른 이름 자동 설정

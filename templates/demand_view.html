@@ -15,48 +15,44 @@
     <header>
         <div class="container">
             <div class="logo">
-                <a href = '/users/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                <a href = '/users/demand/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
             </div>
             <div class = 'header_nickname'>
                 {{user.nickname}}님 반갑습니다.
             </div>
         </div>
     </header>
-    <div class = 'html-container'>
-        <div class="list-container">
-            <button class="demand_cta-btn"><a href = '/users/demand/demand_add/'>나도 추가하기</a></button>
-            <h2>다른 사람들 수요 보기</h2>
-                <ul class="item-list" id="itemList">
-                    <table>
-                        <tr>
-                            <th>
-                                No.
-                            </th>
-                            <th>
-                                제목
-                            </th>
-                            <th>
-                                닉네임
-                            </th>
-                        </tr>
-                        {% for i in print_id %}
-                        <tr>
-                            <td>
-                                {{ i.id }}
-                            </td>
-                            <td>
-                                {{ i.post_title }}
-                            </td>
-                            <td>
-                                {{ i.email.nickname }}
-                                
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </table>
-                </ul>
+    <main class = 'overlay'>
+        <div class="demand_post-container">
+            <div class = 'demand_cta-btn_container'>
+                <a href = '/users/demand/demand_add/' class = 'demand_cta-btn'>
+                    나도 추가하기
+                </a>
+            </div>
+            
+            <h2>방 구하는 사람들 보기</h2>
+                    <div class="table-container">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in print_id %}
+                                <tr>
+                                    <td><a href="/users/demand/demand_detail/{{ i.id }}">{{ i.id }}</a></td>
+                                    <td><a href="/users/demand/demand_detail/{{ i.id }}">{{ i.post_title }}</a></td>
+                                    <td><a href="/users/demand/demand_detail/{{ i.id }}">{{ i.email.nickname }}</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
         </div>
-    </div>
+    </main>
     
 </body>
 

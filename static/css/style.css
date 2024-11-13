@@ -280,6 +280,7 @@ header .container {
     font-size: 1.5em;
     cursor: pointer;
     transition: background 0.3s;
+    text-decoration: none;
 }
 
 .cta-btn:hover {
@@ -329,6 +330,102 @@ header .container {
     color : black
 }
 
+/* demand_post*/
+.demand_post-container {
+
+    background-color: rgb(22, 0, 75);
+    width: 80%;
+    height:750px;
+    max-width: 1900px;
+    margin: auto;
+    margin-top: 150px;
+    margin-left: 100px;
+    padding: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    z-index: 2;
+    color : white;
+}
+
+.demand_post-container h2 {
+    margin-bottom: 1rem;
+    width : 50%
+}
+
+.demand_post-container_divide{
+    display: flex;
+    gap : 150px;
+    width: 80%;
+}
+
+.imagePreviewContainer{
+    display: block;
+}
+
+.imagePreviewContainer_divide{
+    display: flex;
+    gap : 100px
+}
+
+
+.imagePreview{
+    display: block;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 20%;
+}
+
+
+.demand_post-container label {
+    display: block;
+    margin: 0.5rem 0 0.2rem;
+    text-align: left;
+}
+
+.demand_post-container input[type="email"],
+.demand_post-container input[type="text"],
+.demand_post-container input[type="password"],
+.demand_post-container input[type="number"]
+{
+    width: 100%;
+    height:40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    background : rgb(212, 212, 212);
+    color : black
+}
+/* Container for input-button pairs */
+.image-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 3.5rem;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    width: 10%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    background-color: rgb(212, 212, 212);
+    color: black;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: rgb(180, 180, 180);
+}
 
 
 /* Container for input-button pairs */
@@ -336,7 +433,22 @@ header .container {
     display: flex;
     align-items: center;
     gap: 50px;
-    margin-bottom: 3.5rem;
+    margin-bottom: 3.0rem;
+
+}
+
+.next_buttons{
+    display: flex;
+    margin: 50px;
+    gap:100px;
+    
+
+}
+
+.next_buttons .cta-btn{
+    width:100px;
+    height:30px;
+    font-size : 1em
 
 }
 
@@ -414,6 +526,7 @@ header .container {
     width : 30%;
     height:55px;
     font-size: 1.3em;
+    text-decoration: none;
 }
 
 .cta-btn-inline:hover {
@@ -588,6 +701,7 @@ header .container {
     font-weight: bold;         /* 텍스트 굵기 */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
     cursor: pointer;           /* 마우스 커서를 포인터로 변경 */
+    text-decoration: none;
 }
 
 .circle1:hover {
@@ -608,60 +722,94 @@ header .container {
     font-weight: bold;         /* 텍스트 굵기 */
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
     cursor: pointer;           /* 마우스 커서를 포인터로 변경 */
+    text-decoration: none;
 }
 
 .circle2:hover {
     background-color: #de71ff; /* 호버 시 배경색 변경 */
     color: white; 
 }
-.html-container {
-    background-color: rgb(255, 255, 255);
-    height: 100vh;  
-    margin-top: 110px;
-    border-radius: 10px;
-    text-align: center;
-    z-index: 3;
-    color: white;
-    justify-content: center;
-    align-items: center;
-}
-.list-container {
-    position: absolute;         /* .add-button의 위치 기준 */
-    top:0%;
-    background-color: rgb(22, 0, 75);
-    width: 90vw;                /* 화면 너비의 90% */
-    height: 80vh;               /* 화면 높이의 80% */
-    max-width: 1000px;          /* 최대 너비 제한 */
-    margin: 30px;          /* 수평 중앙 정렬 */
-    margin-top: 150px;          /* 수평 중앙 정렬 */
-    border-radius: 10px;
-    text-align: center;
-    z-index: 4;
-    color: white;
-    overflow-y: hidden;           /* 리스트가 넘칠 때 스크롤 */
+
+.demand_cta-btn_container{
+    width:150px;
+    margin-top: 10px;
 }
 
 .demand_cta-btn {
-    position: absolute;         /* list-container의 왼쪽에 고정 */
-    top: 2%;                  /* 위쪽 여백 */
-    left: 80%;                 /* 왼쪽 여백 */
+    position: relative;         /* list-container의 왼쪽에 고정 */
     padding: 10px 20px;
     font-size: 1rem;
     border: none;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #B39DDB;
+    color: black;
     cursor: pointer;
     border-radius: 5px;
     z-index: 10;
+    text-decoration: none;
 }
 
-.add-button:hover {
-    background-color: #45a049;
+.demand_cta-btn:hover {
+    background-color: #0078d7;
+    color : white
 }
 
+/* 테이블을 감싸는 컨테이너 */
+.table-container {
+    max-width: 800px;
+    height:68vh;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    margin-top:10px
+}
 
-.signup-container h2 {
-    margin-bottom: 1rem;
+/* 기본 테이블 스타일 */
+.styled-table {
+    width: 100%;
+    font-size: 0.8em;
+    color: black;
+    
+}
+
+/* 테이블 헤더 스타일 */
+.styled-table thead tr {
+    background-color: #B39DDB;
+    color: black;
+    text-align: center;
+}
+/* 테이블 헤더 고정 */
+.styled-table thead tr {
+    position: sticky;
+    top: 0;
+    background-color: #B39DDB; /* 헤더 배경색 고정 */
+    color: #ffffff;
+    z-index: 1;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+/* 테이블 데이터 셀 스타일 */
+.styled-table th,
+.styled-table td {
+    padding: 7px;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+/* 행 호버 효과 */
+.styled-table tbody tr:hover {
+    background-color: #e1e1e1;
+}
+
+/* 링크 스타일 */
+.styled-table a {
+    color: #0078d7;
+    text-decoration: none;
+}
+
+.styled-table a:hover {
+    text-decoration: underline;
 }
 
 /* 푸터 */

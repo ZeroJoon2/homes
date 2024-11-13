@@ -1,11 +1,240 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Signup</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    {{print_id}}
+        <!-- 잔상 효과를 위한 여러 개의 이미지 -->
+        <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail1">
+        <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
+        
+        
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <a href = '/users/demand/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+                </div>
+                <div class = 'header_nickname'>
+                    {{user.nickname}}님 반갑습니다.
+                </div>
+            </div>
+        </header>
+    
+
+    <main class = 'overlay'>
+        <div class="signup-container">
+            <h2>상세히 보세요~!</h2>
+
+                <form method="post" id="signup-form">
+                {% csrf_token %}
+                    <label for="post_title">제목</label>
+                    <div class="input-button-group">
+                        <input type="text" id="post_title" name="post_title" required placeholder="제목이 뭔가요" value = '{{value_post_title}}' readonly>
+                    </div>
+                    <div class="input-button-group">
+                        <div class = 'inputLabel'>
+                            <label for="house_type_code">유형선택</label>
+                            <div class="custom-select-wrapper">
+                                <select class = 'select_dropdown' id = 'house_type_code' name = 'house_type_code' required disabled >
+                                    <option value = '' disabled selected> 선택하시라구요</option>
+                                    <option value = '1' {% if value_house_type_code == 1 %}selected{% endif %}>월세</option>
+                                    <option value = '2' {% if value_house_type_code == 2 %}selected{% endif %}>전세</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = 'inputLabel'>
+                            <label for="house_transaction_code">거주형태선택</label>
+                            <div class="custom-select-wrapper">
+                                <select class = 'select_dropdown' id = 'house_transaction_code' name = 'house_transaction_code' required disabled>
+                                    <option value = '' disabled selected> 선택하시라구요</option>
+                                    <option value = '1' {% if value_house_transaction_code == 1 %}selected{% endif %}>아파트</option>
+                                    <option value = '2' {% if value_house_transaction_code == 2 %}selected{% endif %}>빌라</option>
+                                    <option value = '3' {% if value_house_transaction_code == 3 %}selected{% endif %}>단독주택</option>
+                                    <option value = '4' {% if value_house_transaction_code == 4 %}selected{% endif %}>다가구주택</option>
+                                    <option value = '5' {% if value_house_transaction_code == 5 %}selected{% endif %}>오피스텔</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = 'inputLabel'>
+                            <label for="house_location_code">위치는요</label>
+                            <div class="custom-select-wrapper">
+                                <select class = 'select_dropdown' id = 'house_location_code' name = 'house_location_code' required disabled>
+
+                                    <option value = '1' {% if value_house_location_code == 1 %}selected {% endif %}>강남구</option>
+                                    <option value = '2' {% if value_house_location_code == 2 %}selected {% endif %}>강동구</option>
+                                    <option value = '3' {% if value_house_location_code == 3 %}selected {% endif %}>강북구</option>
+                                    <option value = '4' {% if value_house_location_code == 4 %}selected {% endif %}>강서구</option>
+                                    <option value = '5' {% if value_house_location_code == 5 %}selected {% endif %}>관악구</option>
+                                    <option value = '6' {% if value_house_location_code == 6 %}selected {% endif %}>광진구</option>
+                                    <option value = '7' {% if value_house_location_code == 7 %}selected {% endif %}>구로구</option>
+                                    <option value = '8' {% if value_house_location_code == 8 %}selected {% endif %}>금천구</option>
+                                    <option value = '9' {% if value_house_location_code == 9 %}selected {% endif %}>노원구</option>
+                                    <option value = '10' {% if value_house_location_code == 10 %}selected {% endif %}>도봉구</option>
+                                    <option value = '11' {% if value_house_location_code == 11 %}selected {% endif %}>동대문구</option>
+                                    <option value = '12' {% if value_house_location_code == 12 %}selected {% endif %}>동작구</option>
+                                    <option value = '13' {% if value_house_location_code == 13 %}selected {% endif %}>마포구</option>
+                                    <option value = '14' {% if value_house_location_code == 14 %}selected {% endif %}>서대문구</option>
+                                    <option value = '15' {% if value_house_location_code == 15 %}selected {% endif %}>서초구</option>
+                                    <option value = '16' {% if value_house_location_code == 16 %}selected {% endif %}>성동구</option>
+                                    <option value = '17' {% if value_house_location_code == 17 %}selected {% endif %}>성북구</option>
+                                    <option value = '18' {% if value_house_location_code == 18 %}selected {% endif %}>송파구</option>
+                                    <option value = '19' {% if value_house_location_code == 19 %}selected {% endif %}>양천구</option>
+                                    <option value = '20' {% if value_house_location_code == 20 %}selected {% endif %}>영등포구</option>
+                                    <option value = '21' {% if value_house_location_code == 21 %}selected {% endif %}>용산구</option>
+                                    <option value = '22' {% if value_house_location_code == 22 %}selected {% endif %}>은평구</option>
+                                    <option value = '23' {% if value_house_location_code == 23 %}selected {% endif %}>종로구</option>
+                                    <option value = '24' {% if value_house_location_code == 24 %}selected {% endif %}>중구</option>
+                                    <option value = '25' {% if value_house_location_code == 25 %}selected {% endif %}>중랑구</option>                                    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <label for="email">예산을 설정하세요</label>
+                    <div class="input-button-group">
+                        <input type="number" id="house_min_price" name="house_min_price" required placeholder="최저금액은 얼마인가요" value = '{{value_house_min_price}}' readonly>
+                        ~   
+                        <input type="number" id="house_max_price" name="house_max_price" required placeholder="최저금액은 얼마인가요" value = '{{value_house_max_price}}' readonly>
+                    </div>
+                    
+                    <div class="imagePreviewContainer">
+                        <div class = 'imagePreviewContainer_divide'>
+                            {% if post_id.image1 or post_id.image2 or post_id.image3 %}                           
+                            <img src = "{{ post_id.image1.url }}" class = 'imagePreview' alt = '이미지없누'>
+                            <img src = "{{ post_id.image2.url }}" class = 'imagePreview' alt = '이미지없누'>
+                            <img src = "{{ post_id.image3.url }}" class = 'imagePreview' alt = '이미지없누'>
+                            {% else %}
+                                <img src = '' alt =''>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </form>
+                <div class = next_buttons>
+                    {% if post_id.id == 1 %}
+                        <a href = '/users/demand'class = 'cta-btn'>목록가기</a>
+                        <a href = "/users/demand/demand_detail/{{ post_id.id|add:'+1' }}"class = 'cta-btn'>다음페이지</a>    
+                    {% elif post_id.id == last_id %}
+                        <a href = "/users/demand/demand_detail/{{ post_id.id|add:'-1' }}"class = 'cta-btn'>이전페이지</a>    
+                        <a href = '/users/demand'class = 'cta-btn'>목록가기</a>
+                    {% else %}
+                        <a href = "/users/demand/demand_detail/{{ post_id.id|add:'-1' }}"class = 'cta-btn'>이전페이지</a>    
+                        <a href = '/users/demand'class = 'cta-btn'>목록가기</a>
+                        <a href = "/users/demand/demand_detail/{{ post_id.id|add:'+1' }}"class = 'cta-btn'>다음페이지</a>    
+                    {% endif %}
+                </div>
+                    
+                    
+
+                
+        </div>
+        
+    </main>
+    <div id="loading-overlay">
+        <div class="loading-message">로딩중...</div>
+    </div>
 </body>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("verification-section").classList.add("visible");
+        });
+
+/****************************************/
+/*************공통************************/
+/****************************************/
+    // 잔상 효과를 위한 이미지 요소 배열
+    const trails = [
+        document.getElementById("cursorTrail1"),
+        document.getElementById("cursorTrail2"),
+
+    ];
+
+    // 마우스 이동 이벤트 리스너 추가
+    document.addEventListener("mousemove", (event) => {
+        const mouseX = event.pageX;
+        const mouseY = event.pageY;
+
+        // 각 잔상 이미지가 약간 늦게 마우스를 따라오게 설정
+        trails.forEach((trail, index) => {
+            setTimeout(() => {
+                trail.style.left = `${mouseX}px`;
+                trail.style.top = `${mouseY}px`;
+            }, index * 50); // 각 잔상이 약간씩 딜레이되도록 설정
+        });
+    });
+
+
+
+
+    // 클릭 시 pulse 애니메이션 적용
+    document.addEventListener("mousedown", () => {
+        trails.forEach(trail => {
+            trail.classList.add("pulse");
+        });
+    });
+
+    document.addEventListener("mouseup", () => {
+        trails.forEach(trail => {
+            trail.classList.remove("pulse");
+        });
+    });
+
+    // 클릭 가능한 요소 위에 있을 때 pulse 효과 추가
+    document.querySelectorAll("a, button, .clickable").forEach(element => {
+        element.addEventListener("mouseover", () => {
+            trails.forEach(trail => trail.classList.add("pulse"));
+        });
+        element.addEventListener("mouseout", () => {
+            trails.forEach(trail => trail.classList.remove("pulse"));
+        });
+    });
+/****************************************/
+/*************공통************************/
+/****************************************/
+// Function to show the loading overlay
+function showLoadingOverlay() {
+    document.getElementById("loading-overlay").style.display = "flex";
+}
+
+// Add event listeners to forms to show the loading overlay on submit
+document.addEventListener("DOMContentLoaded", function () {
+    const signupForm = document.querySelector("#signup-form"); // Adjust the ID based on your form
+    const verifyForm = document.querySelector("#verify-form"); // Adjust the ID based on your form
+
+    if (signupForm) {
+        signupForm.addEventListener("submit", function () {
+            showLoadingOverlay();
+        });
+    }
+
+    if (verifyForm) {
+        verifyForm.addEventListener("submit", function () {
+            showLoadingOverlay();
+        });
+    }
+});
+function previewImage(event, previewId) {
+    const imagePreview = document.getElementById(previewId);
+    const file = event.target.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = 'block'; // 미리보기 이미지 표시
+        }
+        reader.readAsDataURL(file); // 파일을 Data URL로 읽기
+    } else {
+        imagePreview.style.display = 'none'; // 파일이 없으면 미리보기 숨기기
+    }
+}
+
+
+</script>
+
 </html>
