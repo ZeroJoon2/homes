@@ -27,12 +27,13 @@ font_path = 'C:/Users/YJ/Desktop/국비교육/python/web/django_proj/homes/stati
 font_name = font_manager.FontProperties(fname = font_path).get_name()
 rc('font', family = font_name)
 def chart():
-    y = tbDemands.objects.values('house_location_name').annotate(count = Count('house_type_name'))
-    x_field = [i['house_location_name'] for i in y]
-    y_field = [i['count'] for i in y]
+    data = sorted(tbDemands.objects.values('house_location_name').annotate(count = Count('house_type_name')), key = lambda x: x['count'], reverse=True)
+    x_field = [i['house_location_name'] for i in data]
+    y_field = [i['count'] for i in data]
     plt.figure(layout = 'constrained') #layout으로 크기 자동 조절된다고 함
     plt.bar(x_field, y_field, edgecolor = 'black', color = 'tab:pink')
     plt.title('자치구별 수요')
+    plt.xticks(rotation = 90)
     plt.yticks(range(min(y_field),max(y_field)+1))
     plt.ylim(bottom = 0)
     plt.xlabel('서울 자치구')
@@ -65,7 +66,7 @@ def demand_view(request):
     else:
         print('?')        
         return render(request,'login.html')
-
+    
 def demand_add(request):
     user_email = request.session.get('user_email')
     if user_email:
