@@ -7,6 +7,7 @@ from io import BytesIO
 import base64
 import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
+import os
 # Create your views here.
 
 # def demand_detail(request, id):
@@ -23,11 +24,11 @@ from matplotlib import font_manager, rc
 #     rc('font', family = font_name)
 #     pass
 
-font_path = 'C:/Users/YJ/Desktop/국비교육/python/web/django_proj/homes/static/fonts/NotoSansKR-Black.ttf'
+font_path = os.path.join(settings.BASE_DIR, 'static', 'fonts', 'NotoSansKR-Black.ttf')
 font_name = font_manager.FontProperties(fname = font_path).get_name()
 rc('font', family = font_name)
 def chart():
-    data = sorted(tbDemands.objects.values('house_location_name').annotate(count = Count('house_type_name')), key = lambda x: x['count'], reverse=True)
+    data = sorted(tbDemands.objects.values('house_location_name').annotate(count = Count('house_location_name')), key = lambda x: x['count'], reverse=True)
     x_field = [i['house_location_name'] for i in data]
     y_field = [i['count'] for i in data]
     plt.figure(layout = 'constrained') #layout으로 크기 자동 조절된다고 함

@@ -1,0 +1,62 @@
+{% extends 'supply/base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+    <main class="overlay">
+        <div class="demand_post-container">
+            <div class = 'demand_cta-btn_container'>
+                <a href="supply_add/" class = 'demand_cta-btn'>
+                    나도 추가하기
+                </a>
+                <a href="{% url 'my_listings_only' %}" class = 'demand_cta-btn'>
+                    내 매물 확인하기
+                </a>
+            </div>
+            <div class = 'divide'>
+            <h2>방 파는 사람들 보기 <span style="color: rgb(255, 196, 0);">[매물 개수 : {{ listings.count }}]</span>
+                
+                <div class="table-container">
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in listings %}
+                            <tr>
+                                <td>
+                                    <a href="{% url 'listing_detail' post_id=i.id %}">
+                                        {{ i.id }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'listing_detail' post_id=i.id %}">
+                                        {{ i.post_title }}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'listing_detail' post_id=i.id %}">
+                                        {{ i.email.nickname }}
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </h2>
+            <h2>통계로 보는 실제 공급!
+                <div class="table-container">
+                    <img src = 'data:image/png;base64, {{ chart }}' alt="그래프임">
+                </div>
+            </h2>
+
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

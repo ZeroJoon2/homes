@@ -1,0 +1,83 @@
+{% extends 'supply/base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <main class="overlay">
+    <div class="demand_post-container">
+        <h2 id = 'supply'>{{ listings.post_title }}</h2>
+        <div class = 'table-container2'>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>유형</th>
+                        <th>거래 형태</th>
+                        <th>위치</th>
+                        <th>주소</th>
+                        <th>면적 (m²)</th>
+                        <th>층수</th>
+                        <th>임대료</th>
+                        <th>방 개수</th>
+                        <th>욕실</th>
+                        <th>주차장 여부</th>
+                        <th>건물 연식</th>
+                        <th>관리비</th>
+                        <th>주변 환경</th>
+                        <th>기타</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ listings.house_type_name }}</td>
+                        <td>{{ listings.house_transaction_name }}</td>
+                        <td>{{ listings.house_location_name }}</td>
+                        <td>{{ listing.address }}</td>
+                        <td>{{ listing.width }}</td>
+                        <td>{{ listing.height }}</td>
+                        <td>{{ listing.price }}</td>
+                        <td>{{ listing.rooms }}</td>
+                        <td>{{ listing.bath }}</td>
+                        <td>{{ listing.is_park }}</td>
+                        <td>{{ listing.age }}</td>
+                        <td>{{ listing.owner_fee }}</td>
+                        <td>{{ listing.surround }}</td>
+                        <td>{{ listing.etc }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class = 'margin-top'>
+            <div class = 'divide2'>
+                <img src = "{{listing.image1.url}}" alt = '이미지1' class = 'imagePreview'>
+                <img src = "{{listing.image2.url}}" alt = '이미지1' class = 'imagePreview'>
+                <img src = "{{listing.image3.url}}" alt = '이미지1' class = 'imagePreview'>
+                <img src = "{{listing.image4.url}}" alt = '이미지1' class = 'imagePreview'>
+                <img src = "{{listing.image5.url}}" alt = '이미지1' class = 'imagePreview'>
+                <img src = "{{listing.image6.url}}" alt = '이미지1' class = 'imagePreview'>
+                <img src = "{{listing.image7.url}}" alt = '이미지1' class = 'imagePreview'>
+            </div>
+        </div>
+
+        <!-- 수정 및 삭제 버튼 -->
+        <div style="margin-top: 20px;">
+            <a href="{% url 'listing_update' listing.id %}" class="btn btn-warning" style="margin-right: 10px;">수정</a>
+            <a href="{% url 'listing_delete' listing.id %}" class="btn btn-danger" onclick="return confirm('정말로 삭제하시겠습니까?');">삭제</a>
+        </div>
+
+        <!-- 이전 매물 및 다음 매물 버튼 -->
+        <div style="margin-top: 20px;">
+            {% if previous_listing %}
+                <a href="{% url 'listing_detail' previous_listing.id %}" class="btn btn-secondary" style="margin-right: 10px;">이전 매물</a>
+            {% endif %}
+            {% if next_listing %}
+                <a href="{% url 'listing_detail' next_listing.id %}" class="btn btn-primary">다음 매물</a>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+    </div>
+</main>
+
+{% endblock %}
+</body>

@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 잔상 효과를 위한 여러 개의 이미지 -->
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail1">
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Listings{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href = '/users/supply/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+            </div>
+            <div class = 'header_nickname'>
+                {{user.nickname}}님 반갑습니다.
+            </div>
+        </div>
+    </header>    
+
+<script>
+    /****************************************/
+    /*************공통************************/
+    /****************************************/
+        // 잔상 효과를 위한 이미지 요소 배열
+        const trails = [
+            document.getElementById("cursorTrail1"),
+            document.getElementById("cursorTrail2"),
+    
+        ];
+    
+        // 마우스 이동 이벤트 리스너 추가
+        document.addEventListener("mousemove", (event) => {
+            const mouseX = event.pageX;
+            const mouseY = event.pageY;
+    
+            // 각 잔상 이미지가 약간 늦게 마우스를 따라오게 설정
+            trails.forEach((trail, index) => {
+                setTimeout(() => {
+                    trail.style.left = `${mouseX}px`;
+                    trail.style.top = `${mouseY}px`;
+                }, index * 50); // 각 잔상이 약간씩 딜레이되도록 설정
+            });
+        });
+    
+    
+    
+    
+        // 클릭 시 pulse 애니메이션 적용
+        document.addEventListener("mousedown", () => {
+            trails.forEach(trail => {
+                trail.classList.add("pulse");
+            });
+        });
+    
+        document.addEventListener("mouseup", () => {
+            trails.forEach(trail => {
+                trail.classList.remove("pulse");
+            });
+        });
+    
+        // 클릭 가능한 요소 위에 있을 때 pulse 효과 추가
+        document.querySelectorAll("a, button, .clickable").forEach(element => {
+            element.addEventListener("mouseover", () => {
+                trails.forEach(trail => trail.classList.add("pulse"));
+            });
+            element.addEventListener("mouseout", () => {
+                trails.forEach(trail => trail.classList.remove("pulse"));
+            });
+        });
+    /****************************************/
+    /*************공통************************/
+    /****************************************/
+    
+    function previewImage(event, previewId) {
+        const imagePreview = document.getElementById(previewId);
+        const file = event.target.files[0];
+    
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                imagePreview.src = e.target.result;
+                imagePreview.style.display = 'block'; // 미리보기 이미지 표시
+            }
+            reader.readAsDataURL(file); // 파일을 Data URL로 읽기
+        } else {
+            imagePreview.style.display = 'none'; // 파일이 없으면 미리보기 숨기기
+        }
+    }
+    
+</script>
+</head>
+<body>
+
+    <!-- 이전 페이지, 다음 페이지 버튼 -->
+    <div style="position: fixed; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000;">
+       <button onclick="history.back()" style="font-size: 24px; border: none; background: none; cursor: pointer;">&#x3c;<!-- < 기호 --></button>
+       <button onclick="history.forward()" style="font-size: 24px; border: none; background: none; cursor: pointer;">&#x3e;<!-- > 기호 --></button>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

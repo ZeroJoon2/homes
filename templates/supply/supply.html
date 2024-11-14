@@ -1,0 +1,42 @@
+{% extends 'supply/base.html' %}
+{% load static %}
+
+{% block title %}
+    Document
+{% endblock %}
+
+{% block content %}
+
+<body>
+    <main class="overlay">
+        <div class="demand_post-container">
+            <div class="hero-content">
+                <!-- 매물 등록하기 버튼 -->
+                <div class="two-circle">
+                    <a href="supply_add/" class="circle1">
+                                매물 등록하기
+                    </a>
+                    
+                    <!-- 모든 매물 보기 버튼 -->
+                    <a href="{% url 'all_listings' %}" class="circle2">
+                            모든 매물 보기
+                    </a>
+        
+                    <!-- 내 매물 확인하기 버튼 -->
+                    <div class="demand_cta-btn_container" style="margin-top: 10px;">
+                        <a href="{% url 'my_listings_only' %}" class="btn btn-secondary" style="padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 5px; display: inline-block;">
+                            내 매물 확인하기
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional content, if needed -->
+            <div class="divide">
+                <!-- Replace or add content as needed -->
+            </div>
+        </div>
+    </main>
+    
+</body>
+{% endblock %}

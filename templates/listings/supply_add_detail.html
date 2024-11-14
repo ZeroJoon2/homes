@@ -1,0 +1,139 @@
+{% extends 'supply/base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+    <!-- 잔상 효과를 위한 여러 개의 이미지 -->
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail1">
+    <img src="{% static 'img/home_icon.png' %}" alt="Cursor Image" class="cursor-trail" id="cursorTrail2">
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href = '/users/supply/'><img id="logopng" src="{% static 'img/logo.png' %}" alt="Logo"></a>
+            </div>
+            <div class = 'header_nickname'>
+                {{user.nickname}}님 반갑습니다.
+            </div>
+        </div>
+    </header>
+    <main class = 'overlay'>
+            <div class = 'demand_post-container3'>
+                <form method="POST" enctype="multipart/form-data" class="supply_post-form">
+                {% csrf_token %}
+                    <h2>매물 정보 입력</h2>
+                        <div>
+                            <div class = 'divide2'>
+                                <div class="table-container4">
+                                    <table class="styled-table2">
+                                        <thead>
+                                            <tr>
+                                                <th>항목</th>
+                                                <th>내용</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>주소</td>
+                                                <td><input type="text" id="address" name="address" required placeholder="주소 입력하세요"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>면적 (m²)</td>
+                                                <td><input type="number" id="width" name="width" required placeholder="면적은 얼마인가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>층수</td>
+                                                <td><input type="number" id="height" name="height" required placeholder="몇 층 인가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>가격</td>
+                                                <td><input type="number" id="price" name="price" required placeholder="월에 얼마인가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>방 개수</td>
+                                                <td><input type="number" id="rooms" name="rooms" required placeholder="방은 몇 개 인가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>욕실</td>
+                                                <td><input type="number" id="bath" name="bath" required placeholder="욕실은 몇 개 인가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>주차장 개수</td>
+                                                <td><input type="number" id="is_park" name="is_park" required placeholder="주차공간은 몇 대 가능할까요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>건물 연식</td>
+                                                <td><input type="number" id="age" name="age" required placeholder="건물은 얼마나 되었나요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>관리비</td>
+                                                <td><input type="number" id="owner_fee" name="owner_fee" required placeholder="관리비는 얼마인가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>주변 환경</td>
+                                                <td><input type="text" id="surround" name="surround" required placeholder="주변 환경은 어떤가요?"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>기타</td>
+                                                <td><input type="text" id="etc" name="etc" required placeholder="기타 사항이 있나요?"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            
+                                <div class = 'margin-left'>
+                                        <!-- 이미지 업로드 부분 -->
+                                        <input type="file" id="image1" name="image1" required onchange="previewImage(event, 'imagePreview1')" style="display: none;">
+                                        <label for="image1" class="custom-file-upload2">이미지1 선택</label>
+                                        <img id="imagePreview1" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                        <input type="file" id="image4" name="image4" required onchange="previewImage(event, 'imagePreview4')" style="display: none;">
+                                        <label for="image4" class="custom-file-upload2">이미지4 선택</label>
+                                        <img id="imagePreview4" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                        <input type="file" id="image7" name="image7" required onchange="previewImage(event, 'imagePreview7')" style="display: none;">
+                                        <label for="image7" class="custom-file-upload2">이미지7 선택</label>
+                                        <img id="imagePreview7" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                </div>
+                                <div class = 'margin-left'>
+                                        <!-- 이미지 업로드 부분 -->
+                                        <input type="file" id="image2" name="image2" required onchange="previewImage(event, 'imagePreview2')" style="display: none;">
+                                        <label for="image2" class="custom-file-upload2">이미지2 선택</label>
+                                        <img id="imagePreview2" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                        <input type="file" id="image5" name="image5" required onchange="previewImage(event, 'imagePreview5')" style="display: none;">
+                                        <label for="image5" class="custom-file-upload2">이미지5 선택</label>
+                                        <img id="imagePreview5" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                </div>
+                                <div class = 'margin-left'>
+                                        <!-- 이미지 업로드 부분 -->
+                                        <input type="file" id="image3" name="image3" required onchange="previewImage(event, 'imagePreview3')" style="display: none;">
+                                        <label for="image3" class="custom-file-upload2">이미지3 선택</label>
+                                        <img id="imagePreview3" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                        <input type="file" id="image6" name="image6" required onchange="previewImage(event, 'imagePreview6')" style="display: none;">
+                                        <label for="image6" class="custom-file-upload2">이미지6 선택</label>
+                                        <img id="imagePreview6" class="imagePreview" style="max-width: 200px; display: none; margin-top: 10px;">
+                                </div>
+                            </div>
+                            <button type = 'submit' class = 'cta-btn2'>업로드~~~!!</button>
+                        </div>
+                </form> 
+                
+            </div>
+        </div>
+    </div>
+    
+    
+
+    <!-- 이전 매물 및 다음 매물 버튼 -->
+    <div style="margin-top: 20px;">
+        {% if previous_listing %}
+            <a href="{% url 'listing_detail' previous_listing.id %}" class="btn btn-secondary" style="margin-right: 10px;">이전 매물</a>
+        {% endif %}
+        {% if next_listing %}
+            <a href="{% url 'listing_detail' next_listing.id %}" class="btn btn-primary">다음 매물</a>
+        {% endif %}
+    </div>
+    {% endblock %}
+
+</body>
+</html>
+
+
