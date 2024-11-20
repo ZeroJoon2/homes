@@ -4,14 +4,18 @@ from django.http import JsonResponse
 from django.utils.crypto import get_random_string
 from django.conf import settings
 
+
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
+
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, "login.html")
+
 
 def signup(request):
-    return render(request, 'signup.html')
+    return render(request, "signup.html")
+
 
 # 인증 코드 전송 뷰
 def send_verification_code(request):
@@ -35,6 +39,7 @@ def send_verification_code(request):
         return render(request, "signup.html", {"email": email})
     return JsonResponse({"error": "Invalid request method."}, status=400)
 
+
 # 인증 코드 확인 뷰
 def verify_code(request):
     if request.method == "POST":
@@ -44,14 +49,21 @@ def verify_code(request):
 
         if entered_code == stored_code:
             # Verification successful
-            request.session['email'] = email
-            return render(request, "signup.html", {"verification_successful": True, "email": email})
+            request.session["email"] = email
+            return render(
+                request,
+                "signup.html",
+                {"verification_successful": True, "email": email},
+            )
         else:
             # Verification failed
-            return render(request, "signup.html", {"verification_failed": True, "email": email})
+            return render(
+                request, "signup.html", {"verification_failed": True, "email": email}
+            )
 
     return JsonResponse({"error": "Invalid request method."}, status=400)
 
+
 def register_user(request):
 
-    return render(request, 'next.html')
+    return render(request, "next.html")

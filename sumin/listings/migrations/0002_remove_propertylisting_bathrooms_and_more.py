@@ -6,96 +6,100 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('listings', '0001_initial'),
+        ("listings", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='bathrooms',
+            model_name="propertylisting",
+            name="bathrooms",
         ),
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='bedrooms',
+            model_name="propertylisting",
+            name="bedrooms",
         ),
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='description',
+            model_name="propertylisting",
+            name="description",
         ),
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='listed_date',
+            model_name="propertylisting",
+            name="listed_date",
         ),
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='location',
+            model_name="propertylisting",
+            name="location",
         ),
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='price',
+            model_name="propertylisting",
+            name="price",
         ),
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='title',
+            model_name="propertylisting",
+            name="title",
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='images',
-            field=models.ImageField(default='default.jpg', upload_to='property_images/'),
+            model_name="propertylisting",
+            name="images",
+            field=models.ImageField(
+                default="default.jpg", upload_to="property_images/"
+            ),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='가격',
+            model_name="propertylisting",
+            name="가격",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='건물연식',
+            model_name="propertylisting",
+            name="건물연식",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='관리비',
-            field=models.DecimalField(blank=True, decimal_places=2, max_digits=10, null=True),
+            model_name="propertylisting",
+            name="관리비",
+            field=models.DecimalField(
+                blank=True, decimal_places=2, max_digits=10, null=True
+            ),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='기타사항',
+            model_name="propertylisting",
+            name="기타사항",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='면적',
+            model_name="propertylisting",
+            name="면적",
             field=models.DecimalField(decimal_places=2, default=0.0, max_digits=10),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='방',
+            model_name="propertylisting",
+            name="방",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='욕실',
+            model_name="propertylisting",
+            name="욕실",
             field=models.IntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='주변환경',
+            model_name="propertylisting",
+            name="주변환경",
             field=models.TextField(blank=True),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='주소',
+            model_name="propertylisting",
+            name="주소",
             field=models.CharField(blank=True, max_length=255),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='주차공간여부',
+            model_name="propertylisting",
+            name="주차공간여부",
             field=models.PositiveIntegerField(default=0),
         ),
         migrations.AddField(
-            model_name='propertylisting',
-            name='층수',
+            model_name="propertylisting",
+            name="층수",
             field=models.PositiveIntegerField(default=0),
         ),
     ]

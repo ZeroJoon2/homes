@@ -7,20 +7,35 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('listings', '0005_alter_propertylisting_images'),
+        ("listings", "0005_alter_propertylisting_images"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='propertylisting',
-            name='images',
+            model_name="propertylisting",
+            name="images",
         ),
         migrations.CreateModel(
-            name='PropertyImage',
+            name="PropertyImage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('image', models.ImageField(upload_to='property_images/')),
-                ('property_listing', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='images', to='listings.propertylisting')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("image", models.ImageField(upload_to="property_images/")),
+                (
+                    "property_listing",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="images",
+                        to="listings.propertylisting",
+                    ),
+                ),
             ],
         ),
     ]

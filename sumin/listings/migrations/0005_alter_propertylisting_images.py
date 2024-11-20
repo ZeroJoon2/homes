@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('listings', '0004_alter_propertylisting_user'),
+        ("listings", "0004_alter_propertylisting_user"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='propertylisting',
-            name='images',
-            field=models.ImageField(blank=True, default='default.jpg', null=True, upload_to='property_images/'),
+            model_name="propertylisting",
+            name="images",
+            field=models.ImageField(
+                blank=True,
+                default="default.jpg",
+                null=True,
+                upload_to="property_images/",
+            ),
         ),
     ]

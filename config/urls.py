@@ -27,14 +27,18 @@ urlpatterns = [
     path("", views.index),
     path("signup/", views.signup),
     path("login/", views.login),
-    path("send-verification-code/", views.send_verification_code, name="send_verification_code"),
+    path(
+        "send-verification-code/",
+        views.send_verification_code,
+        name="send_verification_code",
+    ),
     path("verify-code/", views.verify_code, name="verify_code"),
-    path("users/", include('users.urls')),
-#     path("demand/", include('demand.urls')),
-#     path("supply/", include('supply.urls')),
+    path("users/", include("users.urls")),
+    #     path("demand/", include('demand.urls')),
+    #     path("supply/", include('supply.urls')),
 ]
 
 urlpatterns += static(
     prefix=settings.MEDIA_URL,
-    document_root = settings.MEDIA_ROOT,
+    document_root=settings.MEDIA_ROOT,
 )
