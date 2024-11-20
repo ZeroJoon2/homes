@@ -304,3 +304,5 @@ def supply_add(request):
         transaction_type = request.POST.get("transaction_type")
         print(house_type, transaction_type)
         return render(request, "listings/my_list.html")
+
+    

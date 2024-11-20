@@ -9,6 +9,12 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager, rc
 import os
 
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import *
+from rest_framework import status
+
 # Create your views here.
 
 # def demand_detail(request, id):
@@ -170,3 +176,42 @@ def demand_detail(request, post_id):
     except Exception as e:
         context = {"e": e}
         return print(context)
+
+
+class api_tbDemand(APIView):
+    def get(self, request):
+        demand_list = tbDemands.objects.all()
+        serializer = DemandsSerializer(demand_list, many = True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    def post(self, request):
+        serializer = DemandsSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status = status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    
+class api_tbDemand_detail(APIView):
+    def get(self, request, post_id):
+        demand_detail_list = tbDemands.objects.get(id = post_id)
+        serializers = DemandSerializer(demand_detail_list)
+        return Response(serializers.data, status = status.HTTP_200_OK)
+
+     
+class api_tbDemand_detail_put_title(APIView):    
+    def put(self, request, post_id):
+        demand_id = tbDemands.objects.get(id = post_id)
+        serializer = DemandsSerializer_title(demand_id, data = request.data, partial = True) #partial은 부분 update 허용한다는 뜻임
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class api_tbDemand_detail_put_image(APIView):    
+    def put(self, request, post_id):
+        demand_id = tbDemands.objects.get(id = post_id)
+        serializer = DemandsSerializer_image(demand_id, data = request.data, partial = True) #partial은 부분 update 허용한다는 뜻임
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

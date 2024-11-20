@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "users",
     "demand",
     "supply",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
